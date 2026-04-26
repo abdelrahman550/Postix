@@ -6,6 +6,7 @@ import { authContext } from "../../Context/AuthContextProvider";
 import { getUserData } from "../../Services/getUserData";
 import { getUserPosts } from "../../Services/getUserPosts";
 import ProfileInfoCard from "./ProfileComponents/ProfileInfoCard";
+import ProfileEmptyPosts from "./ProfileComponents/ProfileEmptyPosts";
 
 export default function Profile() {
   // Token Authentication Hook
@@ -20,39 +21,42 @@ export default function Profile() {
   const userData = userDataRes?.data?.data?.user;
 
   const { data: userPostsRes, isLoading } = useQuery({
-    queryFn: () => getUserPosts(token , userData),
+    queryFn: () => getUserPosts(token, userData),
     queryKey: ["userPosts", token],
     enabled: !!token,
   });
 
   const posts = userPostsRes?.data?.data?.posts;
-  const myPostsLength = posts?.length 
+  const myPostsLength = posts?.length ?? 0;
 
   const numberOfSkeletons = 1;
 
   return (
     <>
-      <div className="bg-[#f0f2f5] p-5 ">
-        <ProfileInfoCard userData={userData} postsLength={myPostsLength}/>
+      <div className="bg-[#f0f2f5] p-5">
+        <ProfileInfoCard userData={userData} postsLength={myPostsLength} />
 
         <div className="mx-auto grid w-full max-w-7xl gap-4">
-          <div className="flex items-center justify-center bg-white p-4 text-3xl font-extrabold text-slate-500 rounded-2xl">
+          <div className="flex items-center justify-center rounded-2xl bg-white p-4 text-3xl font-extrabold text-slate-500">
             My Posts
           </div>
 
-
-          {isLoading
-            ? Array.from({ length: numberOfSkeletons }).map((_, index) => (
-                <PostCardSkeleton key={index} />
-              ))
-            : posts?.map((post) => (
-                <PostCard
-                  postData={post}
-                  userData={userData}
-                  fullDetails={false}
-                  key={post.id}
-                />
-              ))}
+          {isLoading ? (
+            Array.from({ length: numberOfSkeletons }).map((_, index) => (
+              <PostCardSkeleton key={index} />
+            ))
+          ) : myPostsLength >= 1 ? (
+            posts?.map((post) => (
+              <PostCard
+                key={post.id}
+                postData={post}
+                userData={userData}
+                fullDetails={false}
+              />
+            ))
+          ) : (
+            <ProfileEmptyPosts />
+          )}
         </div>
       </div>
     </>

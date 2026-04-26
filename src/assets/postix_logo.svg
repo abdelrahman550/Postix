@@ -1,0 +1,15 @@
+<svg width="120" height="120" viewBox="0 0 120 120" role="img" xmlns="http://www.w3.org/2000/svg">
+  <title>Postix logo</title>
+  <desc>Postix square logo with community circles and wordmark</desc>
+
+  <rect width="120" height="120" rx="16" fill="#5B21B6"/>
+
+  <!-- Overlapping circles -->
+  <circle cx="44" cy="46" r="20" fill="white"/>
+  <circle cx="64" cy="46" r="20" fill="white" opacity="0.75"/>
+  <circle cx="54" cy="62" r="15" fill="white" opacity="0.55"/>
+
+  <!-- Wordmark inside -->
+  <text x="60" y="98" font-family="Georgia, serif" font-size="18" font-weight="700" fill="white" text-anchor="middle" letter-spacing="-0.5">Postix</text>
+
+</svg>

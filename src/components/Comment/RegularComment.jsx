@@ -59,6 +59,7 @@ export default function RegularComment({ commentData, commentId, postId }) {
     <div className="flex gap-2">
       <div>
         <Avatar
+          color="secondary"
           isBordered={false}
           radius="full"
           size="sm"

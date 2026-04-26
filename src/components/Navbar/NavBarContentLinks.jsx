@@ -16,12 +16,6 @@ export default function NavBarContentLinks() {
         </span>
         <span>Profile</span>
       </NavLink>
-      <button className="navbar-content-link">
-        <span>
-          <MessageCircle size={20} />
-        </span>
-        <span>Notifications</span>
-      </button>
     </div>
   );
 }

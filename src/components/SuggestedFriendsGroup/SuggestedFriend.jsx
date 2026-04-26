@@ -14,11 +14,11 @@ export default function SuggestedFriend({personData}) {
                         src={personData?.photo}
                         />
                         <div className='flex flex-col'>
-                            <span className='truncate text-sm font-bold text-slate-900 hover:underline'>{personData?.name}</span>
+                            <span className='truncate text-sm font-bold text-slate-900 hover:underline max-w-26'>{personData?.name}</span>
                             <span className='truncate text-xs text-slate-500'>@{userName}</span>
                         </div>
                 </div>
-                <div className='inline-flex items-center gap-1 rounded-full px-3 py-1.5 text-xs font-bold transition bg-[#e7f3ff] text-[#1877f2] hover:bg-[#d8ebff] h-fit'>
+                <div className='inline-flex items-center gap-1 rounded-full px-3 py-1.5 text-xs font-bold transition bg-[#EDE9FE] text-[#5B21B6] hover:text-[#3B167A] cursor-pointer h-fit'>
                     <UserPlus size={14} />
                     <span>Follow</span>
                 </div>

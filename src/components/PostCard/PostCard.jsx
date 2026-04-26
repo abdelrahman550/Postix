@@ -14,7 +14,6 @@ import {
   Earth,
   MessageCircle,
   Repeat2,
-  Share2,
   ThumbsUp,
   Trash2,
 } from "lucide-react";
@@ -24,10 +23,11 @@ import { toast } from "react-toastify";
 import Swal from "sweetalert2";
 import { authContext } from "../../Context/AuthContextProvider";
 import { deletePost } from "../../Services/deletePost";
+import { likePost } from "../../Services/likePost";
 import { timeAgo } from "../../utils/timeAgo";
 import TopComment from "../Comment/TopComment";
-import AllComments from "./../Comment/AllComments";
 import PostEditModal from "../PostEditModal/PostEditModal";
+import AllComments from "./../Comment/AllComments";
 
 export default function PostCard({ postData, fullDetails, userData }) {
   const queryClient = useQueryClient();
@@ -36,6 +36,10 @@ export default function PostCard({ postData, fullDetails, userData }) {
   const { token } = useContext(authContext);
 
   const postId = postData?._id;
+  const userId = userData?._id;
+
+  const likes = postData?.likes || [];
+  const isLiked = likes.includes(userId);
 
   // Post Deletion
   const { mutate } = useMutation({
@@ -45,6 +49,18 @@ export default function PostCard({ postData, fullDetails, userData }) {
       toast.success("Post Deleted Successfully!", {
         position: "top-center",
       });
+    },
+    onError(error) {
+      toast.error(`${error?.response?.data?.message}`, {
+        position: "top-center",
+      });
+    },
+  });
+
+  const { mutate: likeThisPost, isPending } = useMutation({
+    mutationFn: () => likePost(token, postId),
+    onSuccess() {
+      queryClient.invalidateQueries(["posts", token]);
     },
     onError(error) {
       toast.error(`${error?.response?.data?.message}`, {
@@ -99,6 +115,7 @@ export default function PostCard({ postData, fullDetails, userData }) {
         <CardHeader className="justify-between p-4 pb-3">
           <div className="flex gap-3">
             <Avatar
+              color="secondary"
               isBordered={false}
               radius="full"
               size="md"
@@ -145,9 +162,9 @@ export default function PostCard({ postData, fullDetails, userData }) {
             )}
           </div>
         </CardHeader>
-        <CardBody className="text-foreground max-w-full overflow-visible px-0 py-0 text-sm leading-relaxed whitespace-pre-wrap">
+        <CardBody className="text-foreground max-w-full overflow-visible px-0 py-0 leading-relaxed whitespace-pre-wrap">
           {postData?.body && (
-            <span className="mb-4 line-clamp-3 w-full px-4 pt-0">
+            <span className="mb-4 line-clamp-3 w-full px-4 pt-0 max-w-[90vw]">
               {postData?.body}
             </span>
           )}
@@ -163,7 +180,7 @@ export default function PostCard({ postData, fullDetails, userData }) {
         </CardBody>
         <div className="mx-4 flex justify-between border-b border-slate-200 pt-3 pb-2 text-sm text-slate-500">
           <div className="flex items-center gap-2">
-            <span className="flex h-5 w-5 items-center justify-center rounded-full bg-[#1877F2] text-white">
+            <span className="flex h-5 w-5 items-center justify-center rounded-full bg-[#5B21B6] text-white">
               <ThumbsUp size={12} />
             </span>
             <span>{postData?.likesCount} Likes</span>
@@ -178,19 +195,36 @@ export default function PostCard({ postData, fullDetails, userData }) {
             <span>{postData?.commentsCount} Comments</span>
             <Link
               to={`/WholePost/${postData.id}`}
-              className="cursor-pointer rounded-md bg-transparent px-2 py-1 text-xs font-bold text-[#1877f2] transition hover:bg-[#e7f3ff]"
+              className="cursor-pointer rounded-md bg-transparent px-2 py-1 text-xs font-bold text-[#5B21B6] transition hover:bg-[#EDE9FE]"
             >
               View Details
             </Link>
           </div>
         </div>
         <CardFooter className="flex justify-center gap-2 p-1">
-          <div className="post-footer-element">
-            <span>
-              <ThumbsUp size={16} />
-            </span>
-            <span>Like</span>
-          </div>
+          {isLiked ? (
+            <button
+              disabled={isPending}
+              onClick={likeThisPost}
+              className="post-footer-element text-[#5B21B6]"
+            >
+              <span>
+                <ThumbsUp fill="currentColor" size={16} />
+              </span>
+              <span>Liked</span>
+            </button>
+          ) : (
+            <button
+              disabled={isPending}
+              onClick={likeThisPost}
+              className="post-footer-element"
+            >
+              <span>
+                <ThumbsUp size={16} />
+              </span>
+              <span>Like</span>
+            </button>
+          )}
           <Link
             to={`/WholePost/${postData.id}`}
             className="post-footer-element"
@@ -200,17 +234,11 @@ export default function PostCard({ postData, fullDetails, userData }) {
             </span>
             <span>Comment</span>
           </Link>
-          <div className="post-footer-element">
-            <span>
-              <Share2 size={16} />
-            </span>
-            <span>Share</span>
-          </div>
         </CardFooter>
         {/* Top Comment Componnent */}
 
         {!fullDetails && postData?.topComment && (
-          <TopComment topComment={postData?.topComment} />
+          <TopComment postId={postId} topComment={postData?.topComment} />
         )}
 
         {/* All Comments Component */}

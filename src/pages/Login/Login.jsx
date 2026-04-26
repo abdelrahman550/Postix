@@ -86,12 +86,12 @@ export default function Login() {
           <AboutUsPart />
 
           <div className="right-part h-fit w-[90%] rounded-2xl bg-white p-4 sm:w-md sm:p-6 lg:basis-107.5">
-            <div class="mb-4 text-center lg:hidden">
-              <h1 class="text-3xl font-extrabold tracking-tight text-[#00298d]">
-                Route Posts
+            <div className="mb-4 text-center lg:hidden">
+              <h1 className="text-3xl font-extrabold tracking-tight text-[#5B21B6]">
+                Postix
               </h1>
-              <p class="mt-1 text-base leading-snug font-medium text-slate-700">
-                Connect with friends and the world around you on Route Posts.
+              <p className="mt-1 text-base leading-snug font-medium text-slate-700">
+                Connect with friends and the world around you on Postix.
               </p>
             </div>
             <div className="mb-5 grid grid-cols-2 rounded-xl bg-slate-100 p-1">
@@ -110,7 +110,7 @@ export default function Login() {
             </div>
 
             <h2 className="text-2xl font-extrabold text-slate-900">
-              Log in to Route Posts
+              Log in to Postix
             </h2>
 
             <p className="mt-1 text-sm text-slate-500">
@@ -154,21 +154,21 @@ export default function Login() {
               </div>
 
               {!isSubmitting && (
-                <button className="w-full cursor-pointer rounded-xl bg-[#00298d] py-3 text-base font-extrabold text-white transition hover:bg-[#001f6b] disabled:opacity-60">
+                <button className="w-full cursor-pointer rounded-xl bg-[#5B21B6] py-3 text-base font-extrabold text-white transition hover:bg-[#4C1D95] disabled:opacity-60">
                   Log In
                 </button>
               )}
               {isSubmitting && (
                 <button
                   disabled
-                  className="w-full cursor-not-allowed rounded-xl bg-[#00298d] py-3 text-base font-extrabold text-white transition hover:bg-[#001f6b] disabled:opacity-60"
+                  className="w-full cursor-not-allowed rounded-xl bg-[#5B21B6] py-3 text-base font-extrabold text-white transition hover:bg-[#4C1D95] disabled:opacity-60"
                 >
                   Please wait...
                 </button>
               )}
               <Link
                 to={"/login"}
-                className="mx-auto block text-center text-sm font-semibold text-[#00298d] transition hover:underline"
+                className="mx-auto block text-center text-sm font-semibold text-[#5B21B6] transition hover:underline"
               >
                 Forgot password?
               </Link>

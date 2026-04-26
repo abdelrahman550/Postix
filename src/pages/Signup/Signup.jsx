@@ -120,7 +120,6 @@ export default function Signup() {
     } catch (error) {
       const errorMessage = error?.response?.data?.message;
       setFormError(errorMessage);
-      console.log("🚀 ~ sendDataToRegister ~ errorMessage:", errorMessage);
     }
   }
   return (
@@ -271,14 +270,14 @@ export default function Signup() {
               </div>
 
               {!isSubmitting && (
-                <button className="w-full cursor-pointer rounded-xl bg-[#00298d] py-3 text-base font-extrabold text-white transition hover:bg-[#001f6b] disabled:opacity-60">
+                <button className="w-full cursor-pointer rounded-xl bg-[#5B21B6] py-3 text-base font-extrabold text-white transition hover:bg-[#4C1D95] disabled:opacity-60">
                   Create New Account
                 </button>
               )}
               {isSubmitting && (
                 <button
                   disabled
-                  className="w-full cursor-not-allowed rounded-xl bg-[#00298d] py-3 text-base font-extrabold text-white transition hover:bg-[#001f6b] disabled:opacity-60"
+                  className="w-full cursor-not-allowed rounded-xl bg-[#5B21B6] py-3 text-base font-extrabold text-white transition hover:bg-[#4C1D95] disabled:opacity-60"
                 >
                   Please wait...
                 </button>

@@ -125,16 +125,10 @@ export default function PostCreationField({ userData, isUserDataLoading }) {
               accept="image/*"
             />
           </label>
-          <button
-            type="button"
-            className="inline-flex cursor-pointer items-center justify-center gap-2 rounded-lg px-3 py-2 text-sm text-amber-500 transition hover:bg-slate-100"
-          >
-            <Smile size={16} />
-            <span className="text-slate-600">Feeling/activity</span>
-          </button>
+          
         </div>
         <button
-          className="inline-flex cursor-pointer items-center justify-center gap-2 rounded-lg bg-[#1877f2] px-5 py-2 text-sm font-extrabold text-white shadow-sm transition hover:bg-[#166fe5] disabled:cursor-not-allowed disabled:bg-[#9ec5ff] disabled:opacity-100"
+          className="inline-flex cursor-pointer items-center justify-center gap-2 rounded-lg bg-[#5B21B6] px-5 py-2 text-sm font-extrabold text-white shadow-sm transition hover:bg-[#3B167A] disabled:cursor-not-allowed disabled:bg-[#EDE9FE] disabled:opacity-100"
           disabled={isPending}
           onClick={handlePostCreation}
         >

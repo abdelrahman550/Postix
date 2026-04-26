@@ -1,7 +1,8 @@
 import { Avatar } from "@heroui/react";
 import React from "react";
+import { Link } from "react-router";
 
-export default function TopComment({ topComment }) {
+export default function TopComment({ topComment , postId }) {
   return (
     <div className="p-4 pt-0 w-full">
       <div className="rounded-2xl border border-slate-200 bg-[#F8FAFC] p-3">
@@ -25,9 +26,11 @@ export default function TopComment({ topComment }) {
             </span>
           </div>
         </div>
+        <Link to={`/WholePost/${postId}`}>
         <p className="mt-2 text-xs font-bold text-[#1877f2] hover:underline">
           View all comments
         </p>
+        </Link>
       </div>
     </div>
   );

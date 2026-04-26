@@ -10,7 +10,7 @@ import {
   NavbarContent,
 } from "@heroui/react";
 import { Settings, User } from "lucide-react";
-import logoImg from "/route.png";
+import logoImg from "../../assets/postix_logo.svg";
 import NavBarContentLinks from "./NavBarContentLinks";
 import { useContext } from "react";
 import { authContext } from "../../Context/AuthContextProvider";
@@ -49,12 +49,12 @@ export default function NavBar() {
           wrapper: "py-1.5 px-3",
         }}
       >
-        <NavbarBrand className="gap-3">
-          <span className="h-9 w-9 overflow-hidden rounded-xl">
+        <NavbarBrand as={Link} to={"/feed"} className="gap-2">
+          <span className="h-9 w-9 overflow-hidden rounded-lg">
             <img className="object-cover" src={logoImg} alt="siteLogo" />
           </span>
-          <span className="hidden text-xl font-extrabold text-slate-900 sm:block">
-            Route Posts
+          <span className="hidden text-xl font-extrabold sm:block italic text-[#5B21B6]">
+            Postix
           </span>
         </NavbarBrand>
 
@@ -66,7 +66,7 @@ export default function NavBar() {
               <Avatar
                 as="button"
                 className="cursor-pointer transition-transform"
-                color="primary"
+                color="secondary"
                 isBordered 
                 name="Jason Hughes"
                 size="md"

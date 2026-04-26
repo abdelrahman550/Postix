@@ -14,7 +14,7 @@ export default function ProfileInfoCard({userData , postsLength}) {
               className="max-h-60 w-full object-cover"
             />
           ) : (
-            <div className="h-64 w-full bg-linear-to-br from-[#1f2b46] via-[#21446e] to-[#7fb0dc]" />
+            <div className="h-64 w-full bg-linear-to-br from-[#1E1B4B] via-[#4C1D95] to-[#7C3AED]" />
           )}
 
           <div className="relative px-5 pb-6 md:px-10">
@@ -37,9 +37,9 @@ export default function ProfileInfoCard({userData , postsLength}) {
                       @{userData?.username ? userData?.username : "You"}
                     </p>
 
-                    <div className="mt-4 inline-flex items-center gap-2 rounded-full border border-blue-200 bg-blue-50 px-4 py-2 text-sm font-semibold text-blue-700">
+                    <div className="mt-4 inline-flex items-center gap-2 rounded-full border border-[#DDD6FE] bg-[#EDE9FE] px-4 py-2 text-sm font-semibold text-[#5B21B6]">
                       <Users size={16} />
-                      Route Posts member
+                      Postix member
                     </div>
                   </div>
                 </div>
@@ -72,7 +72,7 @@ export default function ProfileInfoCard({userData , postsLength}) {
 
                     <div className="flex items-center gap-3">
                       <UserRound size={18} />
-                      <span>Active on Route Posts</span>
+                      <span>Active on Postix</span>
                     </div>
                   </div>
                 </div>

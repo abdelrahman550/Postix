@@ -10,7 +10,7 @@ export default function AllComments({postId}) {
   // Token Authentication Hook
   const { token } = useContext(authContext);
 
-  // Getting All Posts From The API
+  // Getting All Comments From The API
   function getAllComments() {
 
       return axios.get(
@@ -36,7 +36,7 @@ export default function AllComments({postId}) {
         <div className="flex items-center justify-between rounded-xl border border-slate-200 bg-white px-3 py-2 mb-3">
           <div className="flex gap-2">
             <span className="text-sm font-extrabold">Comments</span>
-            <span className="flex h-fit items-center justify-center rounded-full bg-[#E7F3FF] px-2 py-0.5 text-xs font-bold text-[#1877F2]">
+            <span className="flex h-fit items-center justify-center rounded-full bg-[#EDE9FE] px-2 py-0.5 text-xs font-bold text-[#5B21B6]">
               {comments?.length}
             </span>
           </div>
